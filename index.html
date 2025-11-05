@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laiba Jameel Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #cdb4db; /* light purple */
+      color: #000000; /* black text */
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header {
+      background: #cdb4db;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      border-bottom: 2px solid #5a189a;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #5a189a;
+      font-size: 22px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: #000000;
+      transition: color 0.3s ease;
+      font-size: 16px;
+    }
+
+    nav ul li a:hover { color: #5a189a; }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #5a189a;
+    }
+    nav.active ul {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 65px;
+      right: 30px;
+      background: #b185db;
+      padding: 15px;
+      border-radius: 8px;
+      gap: 15px;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      text-align: center;
+      background: url('your-bg-image.jpg') center/cover no-repeat;
+      min-height: 80vh;
+    }
+
+    .hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(90,24,154,0.4);
+    }
+
+    .hero h2, .hero p, .hero .btn { position: relative; z-index: 1; }
+
+    .hero h2 { font-size: 40px; margin-bottom: 30px; color: #000000; }
+    .hero p { max-width: 600px; margin-bottom: 35px; color: #000000; }
+
+    .btn {
+      background: #5a189a; color: #ffffff;
+      padding: 12px 25px; border-radius: 6px;
+      font-weight: bold; transition: all 0.3s ease;
+    }
+    .btn:hover { background: #ffffff; color: #5a189a; }
+
+    section { padding: 60px 50px; }
+    section h2 { text-align: center; font-size: 32px; margin-bottom: 25px; color: #5a189a; }
+    .divider {
+      width: 80px; height: 3px; background: #5a189a;
+      border: none; margin: 20px auto 50px; border-radius: 2px;
+    }
+
+    .about { max-width: 800px; margin: 0 auto; text-align: center; color: #000000; }
+    .about p { font-size: 18px; }
+
+    .grid { display: grid; gap: 20px; }
+
+    .social-media { grid-template-columns: repeat(3, 1fr); }
+    .food-posters { grid-template-columns: repeat(5, 1fr); }
+    .logo { grid-template-columns: repeat(3, 1fr); }
+    .magazine { grid-template-columns: repeat(3, 1fr); }
+    .branding { grid-template-columns: repeat(4, 1fr); }
+
+    .frame {
+      background: #e2cfea;
+      border: 2px solid #5a189a;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%; min-height: 25vh;
+    }
+
+    .frame img { width: 100%; height: 100%; object-fit: cover; }
+    .frame:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(90,24,154,0.5); }
+
+    .food-posters .frame:nth-child(6) img {
+      object-position: right center;
+    }
+
+    /* Contact Section */
+    #contact {
+      background-color: #e9d5ff; /* light lavender-purple */
+      padding: 70px 30px;
+      text-align: center;
+    }
+
+    #contact h2 {
+      color: #5a189a;
+      margin-bottom: 20px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #f3e8ff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(90,24,154,0.2);
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #5a189a;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #000;
+      background: #fff;
+    }
+
+    form button {
+      background: #5a189a;
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    form button:hover {
+      background: #3a0ca3;
+    }
+
+    footer {
+      background: #cdb4db;
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 2px solid #5a189a;
+      color: #000000;
+    }
+
+    footer p { margin-bottom: 10px; }
+
+    .social-links a { margin: 0 10px; color: #000000; transition: color 0.3s ease; }
+    .social-links a:hover { color: #5a189a; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .food-posters { grid-template-columns: repeat(3, 1fr); }
+      .branding { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .menu-toggle { display: flex; }
+      .social-media, .food-posters, .logo, .magazine, .branding {
+        grid-template-columns: 1fr;
+      }
+      .hero h2 { font-size: 28px; }
+    }
+    @media (max-width: 480px) {
+      header h1 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Laiba Jameel Portfolio</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#social-media">Social Media</a></li>
+        <li><a href="#branding">Branding</a></li>
+        <li><a href="#food-posters">Posters</a></li>
+        <li><a href="#logo">Logo</a></li>
+        <li><a href="#magazine">Magazine</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <h2>Hello, I'm Laiba Jameel</h2>
+    <p>A Graphic Designer dedicated to creating modern, minimal, and impactful visuals that inspire</p>
+    <a href="#about" class="btn">About Me ✨</a>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <hr class="divider">
+    <div class="about">
+      <p>I am a Bachelor’s student of Software Engineering, and over time I discovered my strong interest in graphic design...</p>
+    </div>
+  </section>
+
+  <!-- Social Media -->
+  <section id="social-media">
+    <h2>Social Media Projects</h2>
+    <hr class="divider">
+    <div class="grid social-media">
+      <div class="frame"><img src="port img 1.png" alt=""></div>
+      <div class="frame"><img src="port-img-2.jpg" alt=""></div>
+      <div class="frame"><img src="port-img3.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- Posters -->
+  <section id="food-posters">
+    <h2>Posters</h2>
+    <hr class="divider">
+    <div class="grid food-posters">
+      <div class="frame"><img src="poster-img1_1.jpg" alt=""></div>
+      <div class="frame"><img src="poster-img2.jpg" alt=""></div>
+      <div class="frame"><img src="poster-img3.jpg" alt=""></div>
+      <div class="frame"><img src="poster-img4.jpg" alt=""></div>
+      <div class="frame"><img src="poster-img-5.jpg" alt=""></div>
+      <div class="frame"><img src="poster img6.png" alt=""></div>
+      <div class="frame"><img src="poster-img-7.jpg" alt=""></div>
+      <div class="frame"><img src="poster img8.png" alt=""></div>
+      <div class="frame"><img src="poster img9.jpg" alt=""></div>
+      <div class="frame"><img src="poster img10.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- Logo -->
+  <section id="logo">
+    <h2>Logo</h2>
+    <hr class="divider">
+    <div class="grid logo">
+      <div class="frame"><img src="logo3.jpg" alt=""></div>
+      <div class="frame"><img src="logo4.jpg" alt=""></div>
+      <div class="frame"><img src="logo5.jpg" alt=""></div>
+      <div class="frame"><img src="logo6.jpg" alt=""></div>
+      <div class="frame"><img src="logo7.jpg" alt=""></div>
+      <div class="frame"><img src="logo8.jpg" alt=""></div>
+      <div class="frame"><img src="logo9.jpg" alt=""></div>
+      <div class="frame"><img src="logo mockup.jpg" alt=""></div>
+      <div class="frame"><img src="logo img1.png" alt=""></div>
+    </div>
+  </section>
+
+  <!-- Magazine -->
+  <section id="magazine">
+    <h2>Magazine</h2>
+    <hr class="divider">
+    <div class="grid magazine">
+      <div class="frame"><img src="magzine img1.jpg" alt=""></div>
+      <div class="frame"><img src="magziine img2.jpg" alt=""></div>
+      <div class="frame"><img src="magzine img3.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- Branding -->
+  <section id="branding">
+    <h2>Branding Projects</h2>
+    <hr class="divider">
+    <div class="grid branding">
+      <div class="frame"><img src="hoarding mockup.jpg" alt=""></div>
+      <div class="frame"><img src="Invoice mockup.jpg" alt=""></div>
+      <div class="frame"><img src="flyer with mockup.jpg" alt=""></div>
+      <div class="frame"><img src="Trifold-Mockup-Out.jpg" alt=""></div>
+      <div class="frame"><img src="02-Trifold-Mockup-In mockup.jpg" alt=""></div>
+      <div class="frame"><img src="Magazine MockUp.jpg" alt=""></div>
+      <div class="frame"><img src="Men-Sweatshirt-Mockup.jpg" alt=""></div>
+      <div class="frame"><img src="standeeMockup.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <hr class="divider">
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Laiba's Portfolio. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/malihaa_aamir18">Instagram</a>
+      <a href="https://www.behance.net/gallery/223702357/Eco-Grains">Behance</a>
+      <a href="www.linkedin.com/in/maliha-aamir-74167b355">LinkedIn</a>
+    </div>
+  </footer>
+</body>
+</html>
